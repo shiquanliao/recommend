@@ -39,7 +39,7 @@ db_config = {
     'DB_CHARSET': 'utf8'
 }
 
-redis_config_user = {
+redis_config_local = {
     'RD_PSW': None,
     'RD_HOST': '0.0.0.0',
     'RD_PORT': 6379,
@@ -49,7 +49,7 @@ redis_config_user = {
     'RECORD_DB': 2  # 用户访问db
 }
 
-redis_config = {
+redis_config_release = {
     'RD_PSW': 'w2Wzp^vm',
     'RD_HOST': '10.117.106.97',
     'RD_PORT': 7379,
@@ -57,3 +57,14 @@ redis_config = {
     'TEST_DB': 0,
     'TEMP_DB': 15,  # 缓存db
 }
+
+redis_config_test = {
+    'RD_PSW': '993kf4wK9d',
+    'RD_HOST': 'r-bp1xaotsrn21sdk8n6.redis.rds.aliyuncs.com',
+    'RD_PORT': 7379,
+    'RD_CHARSET': 'UTF8',
+    'TEST_DB': 0,
+    'TEMP_DB': 15,  # 缓存db
+}
+
+redis_config = redis_config_test
