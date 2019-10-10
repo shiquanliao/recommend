@@ -55,9 +55,11 @@ def index():
         similarity_keywords_num = input_param['similarityKeywordsNum']
         similarity_keywords_min = input_param['similarityKeywordsThreshold']
 
+        start_time1 = time.time()
         hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
         user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(imei, similarity_keywords_num,
                                                                           similarity_keywords_min)
+        print("read data from redis is {}".format(time.time() - start_time1))
         # print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
         # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
         # print(type(hot_key_tags_buffer))
@@ -66,7 +68,7 @@ def index():
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
                                                                  similarity_keywords_min)
-        print("elapsed_time is {}".format(time.time() - start_time))
+        print("algorithm elapsed_time is {}".format(time.time() - start_time))
         return jsonify(result)
 
     except Exception as e:
