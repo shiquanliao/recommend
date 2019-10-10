@@ -56,10 +56,10 @@ def index():
         hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
         user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(imei, similarity_keywords_num,
                                                                           similarity_keywords_min)
-        print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
-        print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
-        print(type(hot_key_tags_buffer))
-        print(type(user_key_tags_buffer))
+        # print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
+        # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
+        # print(type(hot_key_tags_buffer))
+        # print(type(user_key_tags_buffer))
 
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
