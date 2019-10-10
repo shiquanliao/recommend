@@ -9,7 +9,10 @@ from app.dbs import test_dbs
 from app.dbs import main_dbs
 from app.others import tasks
 from app.utils import OtherUtil
-import traceback, json
+import traceback
+import json
+from flask import jsonify, request
+from app.algorithm import NGRAMSimilarities
 
 
 @app.route('/', methods=['GET'])
@@ -35,39 +38,35 @@ def server_502_error(error):
     return '502'
 
 
-@app.route('/not_allow', methods=['GET'])
-def deny(error):
-    return 'You IP address is not in white list...'
-
-
 @app.route("/gsearch/hotWord/personalizedRecommendation", methods=("POST", "GET"))
 def index():
     try:
-        # 获取参数
-        # p = request.json or request.args
-        # print(p)
-        # global redis_buffer
-        # global mysql_buffer
-        # if redis_buffer is None:
-        #     print('reload buffer --- redise')
-        #     redis_buffer = redis_memory()
-        # if mysql_buffer is None:
-        #     print('reload buffer --- mysql')
-        #     mysql_buffer = mysql_memory()
-        #
-        # param = request.get_data()
-        # p = json.loads(param.decode("utf-8"))
+        param = request.get_data()
         # print(type(param))
-        # print(type(p))
-        # print("redis_buffer: {}".format(redis_buffer))
-        # print("mysql_buffer: {}".format(mysql_buffer))
+        input_param = json.loads(param.decode("utf-8"))
+        if input_param is None:
+            raise Exception("请输入参数")
 
-        # if p is None:
-        #     raise Exception("请输入参数")
-        # result = find_user_similarity_keywords(redis_buffer, mysql_buffer, p)
-        # return jsonify(result)
-        return main_dbs.get_user_by_id(199)
+        imei = input_param['imei']
+        news_source = input_param['listNames'][0]['source']
+        news_type = input_param['listNames'][0]['category']
+        similarity_keywords_num = input_param['similarityKeywordsNum']
+        similarity_keywords_min = input_param['similarityKeywordsThreshold']
+
+        hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
+        user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(imei, similarity_keywords_num,
+                                                                          similarity_keywords_min)
+        # print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
+        # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
+        # print(type(hot_key_tags_buffer))
+        # print(type(user_key_tags_buffer))
+
+        result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
+                                                                 news_source, news_type, similarity_keywords_num,
+                                                                 similarity_keywords_min)
+        return jsonify(result)
 
     except Exception as e:
         error = traceback.format_exc()
+        print(e)
         return error

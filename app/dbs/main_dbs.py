@@ -28,3 +28,16 @@ def get_test_by_id(test_id, use_redis_cache=True):
         return RedisMysqlCache().select_one(sql, params)
     else:
         return Mysql().exec_select_one(sql, params)
+
+
+# hot_key
+def get_hot_key_tag_from_redis(source, category):
+    key = source + "_" + category
+    # print("hot_key_tag key is {}".format(key))
+    return RedisMysqlCache().select_hot_key_tag_no_mysql(key)
+
+
+def get_user_keywords_tags_from_redis(input_imei, similarity_keywords_num=12,
+                                      similarity_keywords_min=0.1):
+    key = 'al_' + input_imei
+    return RedisMysqlCache().select_user_key_tag_no_mysql(key)

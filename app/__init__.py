@@ -8,6 +8,10 @@ import atexit
 import fcntl
 from flask_apscheduler import APScheduler
 
+# create project object
+app = Flask(__name__)
+app.config.from_object(ASConfig())  # 为实例化的flask引入配置
+
 
 def init(apps):
     f = open("scheduler.lock", "wb")
@@ -27,9 +31,8 @@ def init(apps):
     atexit.register(unlock)
 
 
-# create project object
-app = Flask(__name__)
-app.config.from_object(ASConfig())  # 为实例化的flask引入配置
+# init(app)
+
 # if os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
 #     print("scheduler is start...")
 #     scheduler = APScheduler()
@@ -38,8 +41,9 @@ app.config.from_object(ASConfig())  # 为实例化的flask引入配置
 #     scheduler.start()
 
 
-init(app)
-
 # 不能换位置
 from app.views import main_views
+"""
+    这里添加我们的接口
+"""
 # app.run(debug=True)

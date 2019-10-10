@@ -23,7 +23,7 @@ class RedisMysqlCache(object):
                  password=redis_config['RD_PSW'],
                  db=redis_config['TEMP_DB'],
                  charset=redis_config['RD_CHARSET']):
-        self.__db = redis.Redis(host=host, port=port, password=password, db=db, charset=charset)
+        self.__db = redis.Redis(host=host, port=port, password=password, db=db, charset=charset, decode_responses=True)
         self.timeout = timeout
 
     def __cal_key(self, sql, params, t="select"):
@@ -53,13 +53,15 @@ class RedisMysqlCache(object):
 
         if expire:
             # cache过期，则重新从数据库加载
-            rst = Mysql().exec_select_one(sql, params)
-            if rst:
-                # 查询到结果，则缓存到redis
-                value = {'timestamp': time.time(), 'data': rst}
-
-                print("redis set cache :")
-                self.__db.set(key, value)
+            # rst = Mysql().exec_select_one(sql, params)
+            rst = {'name': 'hzwangzhiwei', 'sex': 1, 'uid': '288'}
+            value = {'timestamp': time.time(), 'data': rst}
+            print("redis set cache :{}".format(value))
+            self.__db.set(key, value)
+            # if rst:
+            #     # 查询到结果，则缓存到redis
+            #     value = {'timestamp': time.time(), 'data': "rst"}
+            #     self.__db.set(key, value)
 
         return rst
 
@@ -70,7 +72,6 @@ class RedisMysqlCache(object):
         key = self.__cal_key(sql, params)
 
         value = self.__db.get(key)
-
         expire = True
         try:
             value = eval(value)
@@ -90,6 +91,33 @@ class RedisMysqlCache(object):
                 self.__db.set(key, value)
 
         return rst
+
+    def select_hot_key_tag_no_mysql(self, select_key, max_number=20):
+        """
+        获取redis数据库数据
+        :param max_number: 最大标签数
+        :param select_key: example: "baidu_实时热点"
+        :return: list
+        """
+        # print('key is {}'.format(select_key))
+        value = self.__db.hgetall(select_key)
+        # value = self.__db.get(select_key)
+        # print(type(value))
+        # print("redis select_hot_key_tag_no_mysql is {}".format(value))
+        return value
+
+    def select_user_key_tag_no_mysql(self, select_key, max_number=20):
+        """
+        获取redis数据库数据
+        :param max_number: 最大标签数
+        :param select_key: example: "al_imei"
+        :return: list
+        """
+        # print('key is {}'.format(select_key))
+        value = self.__db.hgetall(select_key)
+        # value = self.__db.get(select_key)
+        # print("redis select_user_key_tag_no_mysql is {}".format(value))
+        return value
 
 
 class RedisQueue(object):
@@ -143,7 +171,7 @@ class RedisQueue(object):
 
 
 if __name__ == '__main__':
-    q = RedisQueue('test')
+    q = RedisQueue('recommend')
     #     q.flush()
     start = time.time()
     key = ''

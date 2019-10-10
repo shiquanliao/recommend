@@ -39,12 +39,21 @@ db_config = {
     'DB_CHARSET': 'utf8'
 }
 
-redis_config = {
+redis_config_user = {
     'RD_PSW': None,
     'RD_HOST': '0.0.0.0',
     'RD_PORT': 6379,
-    'RD_CHARSET': 'utf8',
+    'RD_CHARSET': 'UTF8',
     'TEST_DB': 0,
-    'TEMP_DB': 1,  # 缓存db
+    'TEMP_DB': 15,  # 缓存db
     'RECORD_DB': 2  # 用户访问db
+}
+
+redis_config = {
+    'RD_PSW': 'w2Wzp^vm',
+    'RD_HOST': '10.117.106.97',
+    'RD_PORT': 7379,
+    'RD_CHARSET': 'UTF8',
+    'TEST_DB': 0,
+    'TEMP_DB': 15,  # 缓存db
 }
