@@ -48,7 +48,7 @@ def index():
         if input_param is None:
             raise Exception("请输入参数")
 
-        start_time = time.time()
+        # start_time = time.time()
         imei = input_param['imei']
         news_source = input_param['listNames'][0]['source']
         news_type = input_param['listNames'][0]['category']
@@ -62,7 +62,7 @@ def index():
         # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
         # print(type(hot_key_tags_buffer))
         # print(type(user_key_tags_buffer))
-
+        start_time = time.time()
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
                                                                  similarity_keywords_min)
