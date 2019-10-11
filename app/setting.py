@@ -1,6 +1,4 @@
 # encodig=utf-8
-from app.task.TimeTasks import *
-
 
 class ASConfig(object):  # 创建配置，用类
     # 任务列表
@@ -16,7 +14,7 @@ class ASConfig(object):  # 创建配置，用类
         {  # 第一个任务
             'id': 'job1',
             'func': 'app.task.TimeTasks:method_test1',
-            'args': (1, 2),
+            'args': (1, 2),  # 入参
             'trigger': 'interval',  # cron表示定时任务
             'seconds': 3,
         },
@@ -67,4 +65,4 @@ redis_config_test = {
     'TEMP_DB': 15,  # 缓存db
 }
 
-redis_config = redis_config_test
+redis_config = redis_config_local

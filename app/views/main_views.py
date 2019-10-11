@@ -5,15 +5,16 @@ Created on 2015年6月16日
 @author: hzwangzhiwei
 '''
 from app import app
-from app.dbs import test_dbs
-from app.dbs import main_dbs
+from app.dbs import test_dbs, main_dbs
 from app.others import tasks
+from app.task import TimeTasks
 from app.utils import OtherUtil
+from app.algorithm import NGRAMSimilarities
+from app import bufferData
+import time
 import traceback
 import json
 from flask import jsonify, request
-from app.algorithm import NGRAMSimilarities
-import time
 
 
 @app.route('/', methods=['GET'])
@@ -56,13 +57,14 @@ def index():
         similarity_keywords_min = input_param['similarityKeywordsThreshold']
 
         start_time1 = time.time()
-        hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
+        # hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
+        hot_key_tags_buffer = bufferData.get_hot_key_tag_buffer()
         print("read data from hot_key_tags_buffer is {}".format(time.time() - start_time1))
         start_time2 = time.time()
-        user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(imei, similarity_keywords_num,
-                                                                          similarity_keywords_min)
+        user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(imei)
         print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
         print("read data from redis is {}".format(time.time() - start_time1))
+
         # print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
         # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
         # print(type(hot_key_tags_buffer))
