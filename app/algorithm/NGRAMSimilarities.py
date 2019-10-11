@@ -13,8 +13,8 @@ def Ngram_distance(str1, str2, n=2):
     len1 = len(set1)
     len2 = len(set2)
     lenx = len(setx)
-    # num_dist = len1 + len2 - 2 * lenx
-    num_dist = len1 + len2 - lenx
+    num_dist = len1 + len2 - 2 * lenx
+    # num_dist = len1 + len2 - lenx
     num_sim = 1 - num_dist / (len1 + len2)
     return {'dist': num_dist, 'sim': num_sim}
 

@@ -56,26 +56,26 @@ def index():
         similarity_keywords_num = input_param['similarityKeywordsNum']
         similarity_keywords_min = input_param['similarityKeywordsThreshold']
 
-        start_time1 = time.time()
+        # start_time1 = time.time()
         # hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
         hot_key_tags_buffer = bufferData.get_hot_key_tag_buffer(
             redis_perfix['hot_key_perfix'] + "_" + news_source + "_" + news_type)
-        print("read data from hot_key_tags_buffer is {}".format(time.time() - start_time1))
-        start_time2 = time.time()
+        # print("read data from hot_key_tags_buffer is {}".format(time.time() - start_time1))
+        # start_time2 = time.time()
         user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(redis_perfix['user_key_perfix'] + "_" + imei)
         # user_key_tags_buffer = bufferData.get_user_key_tag_buffer(redis_perfix['user_key_perfix'] + "_" + imei)
-        print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
-        print("read data from redis is {}".format(time.time() - start_time1))
+        # print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
+        # print("read data from redis is {}".format(time.time() - start_time1))
 
         # print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
         # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
         # print(type(hot_key_tags_buffer))
         # print(type(user_key_tags_buffer))
-        start_time = time.time()
+        # start_time = time.time()
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
                                                                  similarity_keywords_min)
-        print("algorithm elapsed_time is {}".format(time.time() - start_time))
+        # print("algorithm elapsed_time is {}".format(time.time() - start_time))
         return jsonify(result)
 
     except Exception as e:
