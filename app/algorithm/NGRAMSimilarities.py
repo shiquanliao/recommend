@@ -71,7 +71,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     # 取相似度前3，且相似度系数大于0.5
 
     d = {'col1': distance, 'col2': order_number}
-    panadas_results = pd.DataFrame(data=d)
+    panadas_results = pd.DataFrame(data=d)  
     panadas_results_sorted = panadas_results.sort_values(by='col1', ascending=False)
     # print(type(similarity_keywords_num))
     # print("panadas_results_sorted['col2']= ", panadas_results_sorted['col2'][:12])
