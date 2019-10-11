@@ -7,7 +7,7 @@ Created on 2015年6月16日
 from app import app
 from app.dbs import test_dbs, main_dbs
 from app.others import tasks
-from app.task import TimeTasks
+from app.setting import redis_perfix
 from app.utils import OtherUtil
 from app.algorithm import NGRAMSimilarities
 from app import bufferData
@@ -58,10 +58,12 @@ def index():
 
         start_time1 = time.time()
         # hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
-        hot_key_tags_buffer = bufferData.get_hot_key_tag_buffer()
+        hot_key_tags_buffer = bufferData.get_hot_key_tag_buffer(
+            redis_perfix['hot_key_perfix'] + "_" + news_source + "_" + news_type)
         print("read data from hot_key_tags_buffer is {}".format(time.time() - start_time1))
         start_time2 = time.time()
         user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(imei)
+        # user_key_tags_buffer = bufferData.get_user_key_tag_buffer(redis_perfix['user_key_perfix'] + "_" + imei)
         print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
         print("read data from redis is {}".format(time.time() - start_time1))
 

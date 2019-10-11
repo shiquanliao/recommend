@@ -100,9 +100,17 @@ class RedisMysqlCache(object):
         :return: list
         """
         # print('key is {}'.format(select_key))
-        value = self.__db.hgetall(select_key)
+        keys = self.__db.keys(select_key)
+        print("select_hot_key_tag_no_mysql keys ----- {}".format(keys))
+        value = {}
+        for key_val in enumerate(keys):
+            # print(key_val[1])
+            # print(self.__db.hgetall(key_val[1]))
+            value[key_val[1]] = self.__db.hgetall(key_val[1])
+
+        # value = self.__db.hgetall(select_key)
         # value = self.__db.get(select_key)
-        # print(type(value))
+        # print("select_hot_key_tag_no_mysql ---  value type is: {}".format(type(value)))
         # print("redis select_hot_key_tag_no_mysql is {}".format(value))
         return value
 

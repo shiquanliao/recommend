@@ -1,5 +1,6 @@
 from app.dbs import main_dbs
 from app.utils import DateUtil
+from app.setting import redis_perfix
 
 
 def method_test1(a, b):
@@ -16,8 +17,9 @@ def load_hot_key_tag_task(bufferData):
     :return:
     """
     print("load_hot_key_tag_task ----- time is {}".format(DateUtil.now_datetime()))
-    # hot_buffer = main_dbs.get_hot_key_tag_from_redis("bangdan", "*")
-    hot_buffer = main_dbs.get_hot_key_tag_from_redis("baidu", "实时热点")
+    hot_buffer = main_dbs.get_hot_key_tag_from_redis(redis_perfix['hot_key_perfix'], "*")
+    # print(type(hot_buffer))
+    # hot_buffer = main_dbs.get_hot_key_tag_from_redis("baidu", "实时热点")
     bufferData.set_hot_key_tag_buffer(hot_buffer)
 
 

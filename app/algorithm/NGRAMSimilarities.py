@@ -58,8 +58,10 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     # hot_keyword_tags = hot_keyword_tags.reset_index(drop=True)
     for j in range(len(hot_keywords)):
         # print(hot_keywords_tags[j])
-        if (hot_keywords_tags[j] is not None) & (user_key_tags_buffer is not None):
-            ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer), 2)
+        if (hot_keywords_tags[j] is not None) & (user_key_tags_buffer.values() is not None):
+            # print(hot_keywords_tags[j])
+            # print(user_key_tags_buffer)
+            ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer.values()), 2)
             distance.append(ngram_distance['sim'])
             order_number.append(j)
 

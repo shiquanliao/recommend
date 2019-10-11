@@ -28,6 +28,13 @@ class ASConfig(object):  # 创建配置，用类
     ]
 
 
+# redis前缀
+redis_perfix = {
+    'hot_key_perfix': 'bangdan',
+    'user_key_perfix': 'al'
+}
+
+
 db_config = {
     'DB_USER': 'testsearchdbw',
     'DB_PSW': 'testsearch@123',
@@ -65,4 +72,4 @@ redis_config_test = {
     'TEMP_DB': 15,  # 缓存db
 }
 
-redis_config = redis_config_test
+redis_config = redis_config_local
