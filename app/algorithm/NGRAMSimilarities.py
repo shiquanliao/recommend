@@ -5,13 +5,16 @@ def Ngram_distance(str1, str2, n=2):
     tmp = ' ' * (n - 1)
     str1 = tmp + str1 + tmp
     str2 = tmp + str2 + tmp
-    set1 = set([str1[i:i + n] for i in range(len(str1) - (n - 1))])
-    set2 = set([str2[i:i + n] for i in range(len(str2) - (n - 1))])
+    # set1 = set([str1[i:i + n] for i in range(len(str1) - (n - 1))])
+    # set2 = set([str2[i:i + n] for i in range(len(str2) - (n - 1))])
+    set1 = set(str1)
+    set2 = set(str2)
     setx = set1 & set2
     len1 = len(set1)
     len2 = len(set2)
     lenx = len(setx)
-    num_dist = len1 + len2 - 2 * lenx
+    # num_dist = len1 + len2 - 2 * lenx
+    num_dist = len1 + len2 - lenx
     num_sim = 1 - num_dist / (len1 + len2)
     return {'dist': num_dist, 'sim': num_sim}
 
