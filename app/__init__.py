@@ -41,11 +41,13 @@ bufferData = BufferData.RedisBufferData()
 #     scheduler.init_app(app)
 #     scheduler.start()
 
+TimeTasks.load_hot_key_tag_task(bufferData)
+
 print("scheduler is start...")
 scheduler = APScheduler()
 scheduler.api_enabled = True
 scheduler.init_app(app)
-scheduler.add_job(func=TimeTasks.load_hot_key_tag_task, args=(bufferData,), trigger='interval', seconds=3, id="test")
+scheduler.add_job(func=TimeTasks.load_hot_key_tag_task, args=(bufferData,), trigger='interval', hours=12, id="start")
 scheduler.start()
 
 # 不能换位置

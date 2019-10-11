@@ -37,6 +37,6 @@ def get_hot_key_tag_from_redis(source, category):
     return RedisMysqlCache().select_hot_key_tag_no_mysql(key)
 
 
-def get_user_keywords_tags_from_redis(input_imei):
-    key = 'al_' + input_imei
+def get_user_keywords_tags_from_redis(key):
+    # key = 'al_' + input_imei
     return RedisMysqlCache().select_user_key_tag_no_mysql(key)

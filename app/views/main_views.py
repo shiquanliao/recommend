@@ -62,7 +62,7 @@ def index():
             redis_perfix['hot_key_perfix'] + "_" + news_source + "_" + news_type)
         print("read data from hot_key_tags_buffer is {}".format(time.time() - start_time1))
         start_time2 = time.time()
-        user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(imei)
+        user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(redis_perfix['user_key_perfix'] + "_" + imei)
         # user_key_tags_buffer = bufferData.get_user_key_tag_buffer(redis_perfix['user_key_perfix'] + "_" + imei)
         print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
         print("read data from redis is {}".format(time.time() - start_time1))
