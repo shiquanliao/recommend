@@ -65,4 +65,4 @@ redis_config_test = {
     'TEMP_DB': 15,  # 缓存db
 }
 
-redis_config = redis_config_local
+redis_config = redis_config_test
