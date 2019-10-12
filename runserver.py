@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
-import pymysql
-import redis
-import hashlib
-import time
-import pandas as pd
-import traceback, json
 from app import app
-from app.dbs import main_dbs
 
 # gevent
 from gevent import monkey
