@@ -15,4 +15,7 @@ RuntimeError: You need gevent installed to use this worker.
 which gunicorn
 cat /usr/local/bin/gunicorn
 # 第一行可能是python2.7 需要修改为python3
+
+pstree -ap|grep gunicorn
+kill -9 主进程
 ```
