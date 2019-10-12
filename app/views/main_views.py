@@ -65,7 +65,7 @@ def index():
         user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(redis_perfix['user_key_perfix'] + "_" + imei)
         # user_key_tags_buffer = bufferData.get_user_key_tag_buffer(redis_perfix['user_key_perfix'] + "_" + imei)
         # print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
-        if time.time() - start_time2 > 0.05:
+        if time.time() - start_time2 > 0.02:
             print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
 
         if hot_key_tags_buffer == "" or user_key_tags_buffer == "":
@@ -83,7 +83,7 @@ def index():
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
                                                                  similarity_keywords_min)
-        if time.time() - start_time2 > 0.05:
+        if time.time() - start_time2 > 0.02:
             print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # return " test ---------------------------- "
 
