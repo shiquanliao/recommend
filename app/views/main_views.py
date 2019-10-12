@@ -75,8 +75,9 @@ def index():
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
                                                                  similarity_keywords_min)
+        return " test ---------------------------- "
         # print("algorithm elapsed_time is {}".format(time.time() - start_time))
-        return jsonify(result)
+        # return jsonify(result)
 
     except Exception as e:
         error = traceback.format_exc()
