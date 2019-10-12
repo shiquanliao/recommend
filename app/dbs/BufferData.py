@@ -14,7 +14,7 @@ class RedisBufferData(object):
         self._user_key_tag_buffer = user_key_tag_buffer
 
     def get_hot_key_tag_buffer(self, key):
-        return self._hot_key_tag_buffer.get(key, -1)
+        return self._hot_key_tag_buffer.get(key, "")
 
     def get_user_key_tag_buffer(self, key):
-        return self._user_key_tag_buffer.get(key, -1)
+        return self._user_key_tag_buffer.get(key, "")
