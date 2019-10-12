@@ -64,7 +64,7 @@ def index():
         start_time2 = time.time()
         user_key_tags_buffer = main_dbs.get_user_keywords_tags_from_redis(redis_perfix['user_key_perfix'] + "_" + imei)
         # user_key_tags_buffer = bufferData.get_user_key_tag_buffer(redis_perfix['user_key_perfix'] + "_" + imei)
-        print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
+        # print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
         if time.time() - start_time2 > 100:
             print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
 
@@ -78,12 +78,12 @@ def index():
         # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
         # print(type(hot_key_tags_buffer))
         # print(type(user_key_tags_buffer))
-        start_time = time.time()
+        # start_time = time.time()
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
                                                                  similarity_keywords_min)
         # return " test ---------------------------- "
-        print("algorithm elapsed_time is {}".format(time.time() - start_time))
+        # print("algorithm elapsed_time is {}".format(time.time() - start_time))
         return jsonify(result)
 
     except Exception as e:
