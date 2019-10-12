@@ -23,7 +23,11 @@ class RedisMysqlCache(object):
                  password=redis_config['RD_PSW'],
                  db=redis_config['TEMP_DB'],
                  charset=redis_config['RD_CHARSET']):
-        self.__db = redis.Redis(host=host, port=port, password=password, db=db, charset=charset, decode_responses=True)
+        # self.__db = redis.Redis(host=host, port=port, password=password, db=db, charset=charset,
+        # decode_responses=True)
+        self.__rdb = redis.ConnectionPool(host=host, port=port, password=password, db=db,
+                                          decode_responses=True)
+        self.__db = redis.StrictRedis(connection_pool=self.__rdb)
         self.timeout = timeout
 
     def __cal_key(self, sql, params, t="select"):
