@@ -79,7 +79,7 @@ def index():
         # print(type(hot_key_tags_buffer))
         # print(type(user_key_tags_buffer))
         start_time = time.time()
-        print(user_key_tags_buffer.values())
+        print(user_key_tags_buffer.keys())
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
                                                                  similarity_keywords_min)
