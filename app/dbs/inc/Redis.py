@@ -28,6 +28,7 @@ class RedisMysqlCache(object):
         self.__rdb = redis.ConnectionPool(host=host, port=port, password=password, db=db,
                                           decode_responses=True)
         self.__db = redis.StrictRedis(connection_pool=self.__rdb)
+        print("-------------")
         self.timeout = timeout
 
     def __cal_key(self, sql, params, t="select"):

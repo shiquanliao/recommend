@@ -9,6 +9,8 @@ main模块涉及的数据库操作
 from app.dbs.inc.Redis import RedisMysqlCache
 from app.dbs.inc.Mysql import Mysql
 
+redisBuffer = RedisMysqlCache()
+
 
 def get_user_by_id(u_id):
     '''
@@ -25,7 +27,7 @@ def get_test_by_id(test_id, use_redis_cache=True):
 
     # 该方法你用redis缓存
     if use_redis_cache:
-        return RedisMysqlCache().select_one(sql, params)
+        return redisBuffer.select_one(sql, params)
     else:
         return Mysql().exec_select_one(sql, params)
 
@@ -34,9 +36,11 @@ def get_test_by_id(test_id, use_redis_cache=True):
 def get_hot_key_tag_from_redis(source, category):
     key = source + "_" + category
     # print("hot_key_tag key is {}".format(key))
-    return RedisMysqlCache().select_hot_key_tag_no_mysql(key)
+    global redisBuffer
+    return redisBuffer.select_hot_key_tag_no_mysql(key)
 
 
 def get_user_keywords_tags_from_redis(key):
     # key = 'al_' + input_imei
-    return RedisMysqlCache().select_user_key_tag_no_mysql(key)
+    global redisBuffer
+    return redisBuffer.select_user_key_tag_no_mysql(key)
