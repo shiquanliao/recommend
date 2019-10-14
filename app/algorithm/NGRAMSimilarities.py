@@ -25,7 +25,9 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   news_type,
                                   news_source,
                                   similarity_keywords_num,
-                                  similarity_keywords_min):
+                                  similarity_keywords_min,
+                                  hot_tags_max_num=200,
+                                  user_tag_max_num=30):
     """
     :param user_key_tags_buffer:
     :param hot_key_tags_buffer:
@@ -37,41 +39,45 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     :return:
     """
 
-    hot_keywords = list(hot_key_tags_buffer.keys())
+    hot_keywords = list(hot_key_tags_buffer.keys())[:hot_tags_max_num]
     # print("hot_keywords is {}".format(hot_keywords))
     # print(type(hot_keywords))
+    # print(len(hot_keywords))
 
-    hot_keywords_tags = list(hot_key_tags_buffer.values())
+    hot_keywords_tags = list(hot_key_tags_buffer.values())[:hot_tags_max_num]
     # print("hot_keywords_and_tags is {}".format(hot_keywords_tags))
     # hot_keywords.index = range(200)  # 200
     # hot_keywords_tags.index = range(200)  # 200
-    # hot_keywords_tags.to_csv(r'/data/test_2.csv')
+    # hot_keywords.to_csv(r'/data/test_2.csv')
+    # print(len(hot_keywords_tags))
 
-    # print(user_key_tags_buffer)
+    # print(list(user_key_tags_buffer.keys())[:user_tag_max_num])
+    # print(len(list(user_key_tags_buffer.keys())[:user_tag_max_num]))
 
     # xiaoshuaiwujieguo
-    if (user_key_tags_buffer is None) | (len(hot_keywords_tags) == 0):
+    if (user_key_tags_buffer == "{}") | (len(hot_keywords_tags) == 0):
         return -1
     user_keywords = {}
     distance = []
     order_number = []
     result = []
 
-    # print(hot_keywords_tags.shape())
-    # hot_keyword_tags = hot_keyword_tags.reset_index(drop=True)
+    user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())[:user_tag_max_num]
+    # print("length of user_key_tags_buffer_1:", len(user_key_tags_buffer_1))
+    # print("user_key_tags_buffer = ",user_key_tags_buffer)
     for j in range(len(hot_keywords)):
-        # print(hot_keywords_tags[j])
-        if (hot_keywords_tags[j] is not None) & (user_key_tags_buffer.values() is not None):
+        # if (hot_keywords_tags[j] is not None) & (user_key_tags_buffer_1 is not None):
+        if (hot_keywords_tags[j] != "[]") & (len(user_key_tags_buffer_1) > 0):
             # print(hot_keywords_tags[j])
-            # print(user_key_tags_buffer)
-            ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer.values()), 2)
+            # print(user_key_tags_buffer_1)
+            ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer_1), 2)
             distance.append(ngram_distance['sim'])
             order_number.append(j)
 
     # 取相似度前3，且相似度系数大于0.5
 
     d = {'col1': distance, 'col2': order_number}
-    panadas_results = pd.DataFrame(data=d)  
+    panadas_results = pd.DataFrame(data=d)
     panadas_results_sorted = panadas_results.sort_values(by='col1', ascending=False)
     # print(type(similarity_keywords_num))
     # print("panadas_results_sorted['col2']= ", panadas_results_sorted['col2'][:12])
