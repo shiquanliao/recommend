@@ -15,6 +15,7 @@ import time
 import traceback
 import json
 from flask import jsonify, request
+from app.wraps import response_wrap
 
 
 @app.route('/', methods=['GET'])
@@ -69,8 +70,9 @@ def index():
             print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
         print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
 
-        if hot_key_tags_buffer == "" or user_key_tags_buffer == "":
-            return '-1'
+        if hot_key_tags_buffer == "" or user_key_tags_buffer == "" \
+                or hot_key_tags_buffer == "[]" or user_key_tags_buffer == "{}":
+            return response_wrap.error(1001)
 
         # print("read data from redis is {}".format(time.time() - start_time1))
 
@@ -87,7 +89,7 @@ def index():
             print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # return " test ---------------------------- "
 
-        return jsonify(result)
+        return response_wrap.success(result)
 
     except Exception as e:
         error = traceback.format_exc()

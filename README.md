@@ -18,4 +18,6 @@ cat /usr/local/bin/gunicorn
 
 pstree -ap|grep gunicorn
 kill -9 主进程
+
+netstat -anp | grep 6379
 ```
