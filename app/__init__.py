@@ -13,7 +13,7 @@ from flask_apscheduler import APScheduler
 # create project object
 app = Flask(__name__)
 bufferData = BufferData.RedisBufferData()
-app.config.from_object(ASConfig)  # 为实例化的flask引入配置
+# app.config.from_object(ASConfig)  # 为实例化的flask引入配置
 
 # def init(apps):
 #     f = open("scheduler.lock", "wb")
