@@ -56,6 +56,8 @@ def find_user_similarity_keywords(user_key_tags_buffer,
 
     # xiaoshuaiwujieguo
     if user_key_tags_buffer | (len(hot_keywords_tags) == 0):
+        print(user_key_tags_buffer)
+        print(len(hot_keywords_tags))
         return -1
     user_keywords = {}
     distance = []
