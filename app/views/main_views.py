@@ -71,7 +71,7 @@ def index():
         print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
 
         if hot_key_tags_buffer or user_key_tags_buffer:
-            return response_wrap.error(1001)
+            return response_wrap.error(2001)
 
         # print("read data from redis is {}".format(time.time() - start_time1))
 
@@ -88,6 +88,8 @@ def index():
             print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # return " test ---------------------------- "
 
+        if result == -1:
+            response_wrap.error(1001)
         return response_wrap.success(result)
 
     except Exception as e:
