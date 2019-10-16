@@ -2,7 +2,7 @@
 # 在208测试服务器上 python环境搭建为：py3.6_gunicorn虚拟环境
 # 需要先进入到虚拟环境中
 source py3.6_gunicorn/bin/activate
-gunicorn --worker-class=gevent --worker-connections=500 --workers=8 -b 0.0.0.0:16736 runserver:app &
+nohup gunicorn --worker-class=gevent --worker-connections=500 --workers=8 -b 0.0.0.0:16736 runserver:app &
 ```
 
 [如何优雅的退出/关闭/重启gunicorn进程](https://cloud.tencent.com/developer/article/1366142)
