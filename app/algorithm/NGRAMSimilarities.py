@@ -1,4 +1,5 @@
 import pandas as pd
+import math
 
 
 def Ngram_distance(str1, str2, n=2):
@@ -26,7 +27,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   news_source,
                                   similarity_keywords_num,
                                   similarity_keywords_min,
-                                  hot_tags_max_num=200,
+                                  hot_tags_max_num=3,
                                   user_tag_max_num=30):
     """
     :param user_key_tags_buffer:
@@ -39,13 +40,49 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     :return:
     """
 
-    print(hot_key_tags_buffer)
-    hot_keywords = list(hot_key_tags_buffer.keys())[:hot_tags_max_num]
+    hot_keywords = []
+    hot_keywords_tags = []
+    tag_list = []
+    rise_list = []
+    search_num = []
+
+    index_num = min(hot_tags_max_num, len(hot_key_tags_buffer))
+    if len(hot_key_tags_buffer) > hot_tags_max_num:
+        hot_key_tags_buffer = hot_key_tags_buffer[:hot_tags_max_num]
+    if index_num <= 0:
+        return -1
+    for i in range(math.floor(index_num / 2)):
+        # print(hot_key_tags_buffer[i]['keyword'])
+        hot_keywords.append(hot_key_tags_buffer[i]['keyword'])
+        hot_keywords.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword'])
+        hot_keywords_tags.append(hot_key_tags_buffer[i]['keyword_tags'])
+        hot_keywords_tags.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword_tags'])
+        tag_list.append(hot_key_tags_buffer[i]['tag'])
+        tag_list.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['tag'])
+        rise_list.append(hot_key_tags_buffer[i]['rise'])
+        rise_list.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['rise'])
+        search_num.append(hot_key_tags_buffer[i]['search_num'])
+        search_num.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['search_num'])
+
+    if index_num % 2 != 0:
+        hot_keywords.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword'])
+        hot_keywords_tags.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword_tags'])
+        tag_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['tag'])
+        rise_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['rise'])
+        search_num.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['search_num'])
+
+    # print(hot_keywords)
+    # print(hot_keywords_tags)
+    # print(tag_list)
+    # print(rise_list)
+    # print(search_num)
+
+    # hot_keywords = list(hot_key_tags_buffer.keys())[:hot_tags_max_num]
     # print("hot_keywords is {}".format(hot_keywords))
     # print(type(hot_keywords))
     # print(len(hot_keywords))
 
-    hot_keywords_tags = list(hot_key_tags_buffer.values())[:hot_tags_max_num]
+    # hot_keywords_tags = list(hot_key_tags_buffer.values())[:hot_tags_max_num]
     # print("hot_keywords_and_tags is {}".format(hot_keywords_tags))
     # hot_keywords.index = range(200)  # 200
     # hot_keywords_tags.index = range(200)  # 200
@@ -106,7 +143,10 @@ def find_user_similarity_keywords(user_key_tags_buffer,
             "rank": i + 1,
             "keyword": result[i],
             "category": news_type,
-            "source": news_source
+            "source": news_source,
+            "tag": tag_list[i],
+            "searchNum": search_num[i],
+            "rise": rise_list[i],
         }
         keyword2.append(keyword1)
     keywords = {"imei": imei,

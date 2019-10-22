@@ -91,6 +91,7 @@ def index():
                                                                  similarity_keywords_min)
         if time.time() - start_time2 > 0.05:
             print("algorithm elapsed_time is {}".format(time.time() - start_time))
+        print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # return " test ---------------------------- "
 
         if result == -1:

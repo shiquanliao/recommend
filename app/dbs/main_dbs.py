@@ -73,9 +73,9 @@ def get_hot_key_tag_from_mysql():
     # 查询最大创建时间
     select_update_time = "select max(create_time) from search_hot_word_with_sch_url"
     current_time = mysqlBuffer.exec_select(select_update_time, None)[0]['max(create_time)']
-    print("current_time is: {}, mysql_update_time is: {}".format(current_time, mysql_update_time))
+    # print("current_time is: {}, mysql_update_time is: {}".format(current_time, mysql_update_time))
     if (mysql_update_time is not None) or (current_time == mysql_update_time):
-        print("get_hot_key_tag_from_mysql --- don`t update")
+        # print("get_hot_key_tag_from_mysql --- don`t update")
         return None
 
     # 查询存储时间
@@ -102,12 +102,12 @@ def get_hot_key_tag_from_mysql():
                             "ORDER BY create_time desc"
         load_data = mysqlBuffer.exec_select(load_all_data_sql, default_time)
         key = source + "_" + category
-        dict_value = {}
-        for temp1 in enumerate(load_data):
-            dict_value[temp1[1]['keyword']] = temp1[1]['keyword_tags']
-        result_dic[key] = dict_value
+        # dict_value = {}
+        # for temp1 in enumerate(load_data):
+        #     dict_value[temp1[1]['keyword']] = temp1[1]['keyword_tags']
+        # result_dic[key] = dict_value
 
-        # result_dic[key] = load_data
+        result_dic[key] = load_data
 
     # print(result_dic)
     return result_dic
