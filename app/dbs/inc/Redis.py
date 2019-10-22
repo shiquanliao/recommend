@@ -106,7 +106,7 @@ class RedisMysqlCache(object):
         """
         # print('key is {}'.format(select_key))
         keys = self.__db.keys(select_key)
-        print("select_hot_key_tag_no_mysql keys ----- {}".format(keys))
+        # print("select_hot_key_tag_no_mysql keys ----- {}".format(keys))
         value = {}
         for key_val in enumerate(keys):
             # print(key_val[1])

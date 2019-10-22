@@ -34,9 +34,17 @@ redis_perfix = {
     'user_key_perfix': 'al'
 }
 
+db_config_local = {
+    'DB_USER': 'dev_write',
+    'DB_PSW': 'dev_write',
+    'DB_NAME': 'global_search',
+    'DB_HOST': '192.168.115.223',
+    'DB_PORT': 3306,
+    'DB_CHARSET': 'utf8'
+}
 
-db_config = {
-    'DB_USER': 'testsearchdbw',
+db_config_release = {
+    'DB_USER': 'testidpaydb01.mysql.rds.aliyuncs.com',
     'DB_PSW': 'testsearch@123',
     'DB_NAME': 'testsearchdb',
     'DB_HOST': 'perftestdb01.mysql.rds.aliyuncs.com',
@@ -72,4 +80,5 @@ redis_config_test = {
     'TEMP_DB': 15,  # 缓存db
 }
 
-redis_config = redis_config_test
+redis_config = redis_config_local
+db_config = db_config_local

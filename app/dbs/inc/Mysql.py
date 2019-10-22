@@ -12,6 +12,7 @@ import pandas as pd
 
 import sys
 from app.wraps.mysql_escape_warp import mysql_escape
+from DBUtils.PooledDB import PooledDB
 
 
 @mysql_escape
@@ -71,11 +72,15 @@ class Mysql:
 
     def __connect(self):
         try:
-            self.conn = pymysql.connect(host=self.host, port=self.port, user=self.user, passwd=self.passwd, db=self.db,
-                                        charset=self.charset)
+            # self.conn = pymysql.connect(host=self.host, port=self.port, user=self.user, passwd=self.passwd, db=self.db,
+            #                             charset=self.charset)
+            self.__pool = PooledDB(creator=pymysql, mincached=1, maxcached=20, host=self.host,
+                                   user=self.user, passwd=self.passwd, db=self.db,
+                                   port=self.port, charset=self.charset)
+            self.conn = self.__pool.connection()
 
             # 字典形式
-            self.cursor = self.conn.cursor(cursorclass=pymysql.cursors.DictCursor)
+            self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
         #             print("Mysql Connect to %s: %s" % (self.host, str(self.port)))
         except pymysql.Error as e:
             print("Mysql Error %s: %s" % (self.host, e.args[1]))

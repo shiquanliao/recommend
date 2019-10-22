@@ -39,6 +39,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     :return:
     """
 
+    print(hot_key_tags_buffer)
     hot_keywords = list(hot_key_tags_buffer.keys())[:hot_tags_max_num]
     # print("hot_keywords is {}".format(hot_keywords))
     # print(type(hot_keywords))
