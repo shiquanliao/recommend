@@ -45,9 +45,9 @@ db_config_local = {
 
 db_config_release = {
     'DB_USER': 'testgsearchdbjlw',
-    'DB_PSW': '$jxuxju9f@',
+    'DB_PSW':  '$jxuxju9f@',
     'DB_NAME': 'testgsearchdbjl',
-    'DB_HOST': 'perftestdb01.mysql.rds.aliyuncs.com',
+    'DB_HOST': 'testidpaydb01.mysql.rds.aliyuncs.com',
     'DB_PORT': 3306,
     'DB_CHARSET': 'utf8'
 }
