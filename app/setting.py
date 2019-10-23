@@ -81,4 +81,4 @@ redis_config_test = {
 }
 
 redis_config = redis_config_test
-db_config = db_config_local
+db_config = db_config_release
