@@ -48,7 +48,7 @@ scheduler = APScheduler()
 scheduler.api_enabled = True
 scheduler.init_app(app)
 # scheduler.add_job(func=TimeTasks.load_hot_key_tag_task, args=(bufferData,), trigger='interval', second=10, id="start")
-scheduler.add_job(func=TimeTasks.load_hot_key_tag_task, args=(bufferData,), trigger='interval', seconds=5, id="start")
+scheduler.add_job(func=TimeTasks.load_hot_key_tag_task, args=(bufferData,), trigger='interval', minutes=5, id="start")
 scheduler.start()
 
 # 不能换位置
