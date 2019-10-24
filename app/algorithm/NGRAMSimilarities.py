@@ -27,7 +27,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   news_source,
                                   similarity_keywords_num,
                                   similarity_keywords_min,
-                                  hot_tags_max_num=3,
+                                  hot_tags_max_num=200,
                                   user_tag_max_num=30):
     """
     :param user_key_tags_buffer:
