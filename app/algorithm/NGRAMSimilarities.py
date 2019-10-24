@@ -107,6 +107,9 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     # print("user_key_tags_buffer = ",user_key_tags_buffer)
     for j in range(len(hot_keywords)):
         # if (hot_keywords_tags[j] is not None) & (user_key_tags_buffer_1 is not None):
+        print("user_key_tags: {}".format(user_key_tags_buffer_1))
+        print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
+        print("-------------------sssssssssssssssssssss-----------------------")
         if (hot_keywords_tags[j] != "[]") & (len(user_key_tags_buffer_1) > 0):
             print("user_key_tags: {}".format(user_key_tags_buffer_1))
             print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
