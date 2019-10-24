@@ -94,6 +94,7 @@ def index():
         # print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # return " test ---------------------------- "
 
+        # 埋点没有返回的数据
         if result == -1:
             response_wrap.error(1001)
         return response_wrap.success(result)
