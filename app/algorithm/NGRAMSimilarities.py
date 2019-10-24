@@ -104,7 +104,8 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     order_number = []
     result = []
 
-    user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())[:user_tag_max_num]
+    # user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())[:user_tag_max_num]
+    user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())
     # print("length of user_key_tags_buffer_1:", len(user_key_tags_buffer_1))
     # print("user_key_tags_buffer = ",user_key_tags_buffer)
     for j in range(len(hot_keywords)):
