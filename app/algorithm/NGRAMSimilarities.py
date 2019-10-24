@@ -71,8 +71,6 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         rise_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['rise'])
         search_num.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['search_num'])
 
-    print(hot_keywords)
-
     # print(hot_keywords)
     # print(hot_keywords_tags)
     # print(tag_list)
@@ -122,7 +120,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     # 取相似度前3，且相似度系数大于0.5
 
     d = {'col1': distance, 'col2': order_number}
-    print(d)
+    # print(d)
     panadas_results = pd.DataFrame(data=d)
     panadas_results_sorted = panadas_results.sort_values(by='col1', ascending=False)
     # print(type(similarity_keywords_num))
