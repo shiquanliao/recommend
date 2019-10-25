@@ -46,6 +46,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     rise_list = []
     search_num = []
 
+    print(hot_key_tags_buffer)
     index_num = min(hot_tags_max_num, len(hot_key_tags_buffer))
     print("hot_key_tags_buffer size is: {}".format(len(hot_key_tags_buffer)))
     if len(hot_key_tags_buffer) > hot_tags_max_num:
@@ -138,7 +139,6 @@ def find_user_similarity_keywords(user_key_tags_buffer,
 
     for k1 in keywords_results:
         result.append(hot_keywords[k1])
-    print(hot_keywords)
 
     # keywords ={}
     # keywords = {"imei": imei,
