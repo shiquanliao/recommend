@@ -47,8 +47,10 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     search_num = []
 
     index_num = min(hot_tags_max_num, len(hot_key_tags_buffer))
+    print("hot_key_tags_buffer size is: {}".format(len(hot_key_tags_buffer)))
     if len(hot_key_tags_buffer) > hot_tags_max_num:
         hot_key_tags_buffer = hot_key_tags_buffer[:hot_tags_max_num]
+    print("index_num is: {}, hot_key_tags_buffer size is: {}".format(index_num, len(hot_key_tags_buffer)))
     if index_num <= 0:
         return -1
     for i in range(math.floor(index_num / 2)):
