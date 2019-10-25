@@ -97,10 +97,12 @@ def get_hot_key_tag_from_mysql():
         # 重新拉取一遍数据
         load_all_data_sql = "SELECT keyword,keyword_tags,tag,rise,search_num " \
                             "from search_hot_word_with_sch_url " \
-                            "where create_time>=date_sub(NOW(), interval %s hour) " \
+                            "where create_time>=date_sub(NOW(), interval %(default_time)s hour) " \
+                            "and source= %(source)s and category=%(category)s " \
                             "and (keyword_tags is not null and keyword_tags!='' and keyword_tags != '[]') " \
                             "ORDER BY create_time desc"
-        load_data = mysqlBuffer.exec_select(load_all_data_sql, default_time)
+        params = {"source": source, "category": category, "default_time": default_time}
+        load_data = mysqlBuffer.exec_select(load_all_data_sql, params)
         key = source + "_" + category
         # dict_value = {}
         # for temp1 in enumerate(load_data):
