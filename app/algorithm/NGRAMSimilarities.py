@@ -55,6 +55,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         return -1
     for i in range(math.floor(index_num / 2)):
         # print(hot_key_tags_buffer[i]['keyword'])
+        print(i)
         print(hot_key_tags_buffer[i]['keyword'])
         print(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword'])
         hot_keywords.append(hot_key_tags_buffer[i]['keyword'])
