@@ -46,7 +46,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     rise_list = []
     search_num = []
 
-    print(hot_key_tags_buffer)
+    # print(hot_key_tags_buffer)
     index_num = min(hot_tags_max_num, len(hot_key_tags_buffer))
     print("hot_key_tags_buffer size is: {}".format(len(hot_key_tags_buffer)))
     if len(hot_key_tags_buffer) > hot_tags_max_num:
@@ -56,9 +56,9 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         return -1
     for i in range(math.floor(index_num / 2)):
         # print(hot_key_tags_buffer[i]['keyword'])
-        print(i)
-        print(hot_key_tags_buffer[i]['keyword'])
-        print(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword'])
+        # print(i)
+        # print(hot_key_tags_buffer[i]['keyword'])
+        # print(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword'])
         hot_keywords.append(hot_key_tags_buffer[i]['keyword'])
         hot_keywords.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword'])
         hot_keywords_tags.append(hot_key_tags_buffer[i]['keyword_tags'])
@@ -71,9 +71,9 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         search_num.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['search_num'])
 
     if index_num % 2 != 0:
-        print("----------------------------")
-        print(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword'])
-        print(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword_tags'])
+        # print("----------------------------")
+        # print(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword'])
+        # print(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword_tags'])
         hot_keywords.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword'])
         hot_keywords_tags.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword_tags'])
         tag_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['tag'])

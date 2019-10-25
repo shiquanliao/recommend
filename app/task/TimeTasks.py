@@ -26,7 +26,7 @@ def load_hot_key_tag_task(bufferData):
     hot_buffer1 = main_dbs.get_hot_key_tag_from_mysql()
     if hot_buffer1 is not None:
         print("update hot_buffer")
-        # print(hot_buffer1)
+        print(hot_buffer1)
         bufferData.set_hot_key_tag_buffer(hot_buffer1)
 
 
