@@ -4,7 +4,9 @@
 # shellcheck disable=SC2006
 # shellcheck disable=SC2002
 # shellcheck disable=SC2126
-cpunum=`cat /proc/cpuinfo | grep processor | wc -l`
+# shellcheck disable=SC2197
+# cpunum=`cat /proc/cpuinfo | grep processor | wc -l`
+cpunum=`fgrep processor /proc/cpuinfo | sort -u | wc -l`
 point=16736
 echo 'current cpu number is: '"$cpunum"
 echo ''

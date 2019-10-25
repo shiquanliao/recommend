@@ -130,6 +130,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
 
     for k1 in keywords_results:
         result.append(hot_keywords[k1])
+    print(hot_keywords)
 
     # keywords ={}
     # keywords = {"imei": imei,
