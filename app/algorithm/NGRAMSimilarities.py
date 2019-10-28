@@ -2,7 +2,7 @@ import pandas as pd
 import math
 
 
-def Ngram_distance(str1, str2, n=2):
+def Ngram_distance(str1, str2, n):
     tmp = ' ' * (n - 1)
     str1 = tmp + str1 + tmp
     str2 = tmp + str2 + tmp
@@ -28,7 +28,8 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   similarity_keywords_num,
                                   similarity_keywords_min,
                                   hot_tags_max_num=200,
-                                  user_tag_max_num=30):
+                                  user_tag_max_num=30,
+                                  ngram_value = 1):
     """
     :param user_key_tags_buffer:
     :param hot_key_tags_buffer:
@@ -120,7 +121,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         if (hot_keywords_tags[j] != "[]") & (len(user_key_tags_buffer_1) > 0):
             # print("user_key_tags: {}".format(user_key_tags_buffer_1))
             # print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
-            ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer_1), 2)
+            ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer_1), ngram_value)
             # print("ngram_distance: {}".format(ngram_distance))
             # print("---------------------")
             distance.append(ngram_distance['sim'])
