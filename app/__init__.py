@@ -15,6 +15,7 @@ from flask_apscheduler import APScheduler
 # create project object
 app = Flask(__name__)
 bufferData = BufferData.RedisBufferData()
+logger = Logging.Logger('./log/all.log', logging.ERROR, logging.DEBUG)
 # app.config.from_object(ASConfig)  # 为实例化的flask引入配置
 
 # def init(apps):
@@ -59,5 +60,5 @@ from app.views import main_views
 """
     这里添加我们的接口
 """
-logger = Logging.Logger('./log/all.log', logging.ERROR, logging.DEBUG)
+
 # app.run(debug=True)
