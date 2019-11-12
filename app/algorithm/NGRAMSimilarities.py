@@ -1,5 +1,6 @@
 import pandas as pd
 import math
+from app import logger
 
 
 def Ngram_distance(str1, str2, n):
@@ -29,7 +30,8 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   similarity_keywords_min,
                                   hot_tags_max_num=200,
                                   user_tag_max_num=30,
-                                  ngram_value=1):
+                                  ngram_value=1,
+                                  data_collection_flag=False):
     """
     :param user_key_tags_buffer:
     :param hot_key_tags_buffer:
@@ -119,6 +121,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
 
     # user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())[:user_tag_max_num]
     user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())
+    print("length of user_key_tags_buffer_1: {}".format(user_key_tags_buffer_1))
     # print("length of user_key_tags_buffer_1:", len(user_key_tags_buffer_1))
     # print("user_key_tags_buffer = ",user_key_tags_buffer)
     for j in range(len(hot_keywords)):
@@ -174,5 +177,11 @@ def find_user_similarity_keywords(user_key_tags_buffer,
 
     # elapsed = (time.clock() - start)
     # print("Time used:", elapsed)
+    if data_collection_flag:
+        # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度
+        hot_word_index = []
+        user_tag = []
+        similarity = []
+        logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", hot_word_index, user_tag, similarity)
 
     return keywords
