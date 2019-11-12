@@ -53,15 +53,14 @@ class Logger:
               " | " + hot_word_index + " | " + user_tag + " | " + similarity
         self.logger.info(srt)
 
-
-if __name__ == '__main__':
-    logyyx = Logger('./log/all.log', logging.ERROR, logging.DEBUG)
-    index = 1.0
-    while True:
-        index = index + 1
-        imei = "----" + str(index) + "-----"
-        # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度
-        data_str = imei + " | " + "---唯一id---" + " | " + "----标签算法----" + " | " + "---推荐算法----" + \
-                   " | " + "----热词列表索引 ------" + " | " + "-----用户标签-----" + " | " + "-----相似度----"
-        logyyx.collection(imei, "--唯一id--", "--标签算法--", "--推荐算法--", "--热词列表索引--", "--用户标签--", "--相似度--")
-        time.sleep(0.005)
+# if __name__ == '__main__':
+# logyyx = Logger('./log/all.log', logging.ERROR, logging.DEBUG)
+# index = 1.0
+# while True:
+#     index = index + 1
+#     imei = "----" + str(index) + "-----"
+#     # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度
+#     data_str = imei + " | " + "---唯一id---" + " | " + "----标签算法----" + " | " + "---推荐算法----" + \
+#                " | " + "----热词列表索引 ------" + " | " + "-----用户标签-----" + " | " + "-----相似度----"
+#     logyyx.collection(imei, "--唯一id--", "--标签算法--", "--推荐算法--", "--热词列表索引--", "--用户标签--", "--相似度--")
+#     time.sleep(0.005)
