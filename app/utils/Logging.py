@@ -9,7 +9,6 @@ import time
 class Logger:
     def __init__(self, path, clevel=logging.DEBUG, Flevel=logging.DEBUG, when='M', backCount=5,
                  fmt='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'):
-        print("--------------111111111---------------")
         self.logger = logging.getLogger(path)
         self.logger.setLevel(logging.DEBUG)
         fmt = logging.Formatter('%(asctime)s, %(message)s', '%Y-%m-%d %H:%M:%S')
@@ -31,7 +30,6 @@ class Logger:
         # self.logger.addHandler(fh)
         # self.logger.addHandler(th)
         self.logger.addHandler(rh)
-        print("--------------2222222---------------")
 
     def debug(self, message):
         self.logger.debug(message)

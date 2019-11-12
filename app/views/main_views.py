@@ -94,8 +94,8 @@ def index():
             print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # return " test ---------------------------- "
-
-        logger.info("test")
+        test_str = imei + " | " + user_key_tags_buffer
+        logger.info(test_str)
 
         # 埋点没有返回的数据
         if result == -1:
