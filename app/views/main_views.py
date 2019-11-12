@@ -89,7 +89,7 @@ def index():
         # print(user_key_tags_buffer.keys())
         result = NGRAMSimilarities.find_user_similarity_keywords(user_key_tags_buffer, hot_key_tags_buffer, imei,
                                                                  news_source, news_type, similarity_keywords_num,
-                                                                 similarity_keywords_min)
+                                                                 similarity_keywords_min, True)
         if time.time() - start_time2 > 0.05:
             print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # print("algorithm elapsed_time is {}".format(time.time() - start_time))
