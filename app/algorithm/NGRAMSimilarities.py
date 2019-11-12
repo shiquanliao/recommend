@@ -183,6 +183,6 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         user_tag = []
         similarity = []
         logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ".".join(hot_word_index), ".".join(user_tag),
-                          similarity)
+                          ".".join(similarity))
 
     return keywords
