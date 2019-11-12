@@ -139,7 +139,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
 
     d = {'col1': distance, 'col2': order_number}
     # print(d)
-    print("oder_number: {}".format(order_number))
+    print("d : {}".format(d))
     panadas_results = pd.DataFrame(data=d)
     panadas_results_sorted = panadas_results.sort_values(by='col1', ascending=False)
     # print(type(similarity_keywords_num))
@@ -183,7 +183,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         hot_word_index = []
         user_tag = []
         similarity = []
-        logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ".".join(hot_word_index),
-                          ".".join(user_key_tags_buffer_1), ".".join(similarity))
+        logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(hot_word_index),
+                          ",".join(user_key_tags_buffer_1), ",".join(similarity))
 
     return keywords
