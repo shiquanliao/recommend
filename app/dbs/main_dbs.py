@@ -95,7 +95,7 @@ def get_hot_key_tag_from_mysql():
         source = val['source']
         category = val['category']
         # 重新拉取一遍数据
-        load_all_data_sql = "SELECT keyword,keyword_tags,tag,rise,search_num " \
+        load_all_data_sql = "SELECT id, keyword,keyword_tags,tag,rise,search_num " \
                             "from search_hot_word_with_sch_url " \
                             "where create_time>=date_sub(NOW(), interval %(default_time)s hour) " \
                             "and source= %(source)s and category=%(category)s " \

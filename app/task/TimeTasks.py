@@ -23,11 +23,14 @@ def load_hot_key_tag_task(bufferData):
     # bufferData.set_hot_key_tag_buffer(hot_buffer)
 
     # 切换到mysql数据库
-    hot_buffer1 = main_dbs.get_hot_key_tag_from_mysql()
-    if hot_buffer1 is not None:
+    hot_buffer = main_dbs.get_hot_key_tag_from_mysql()
+    if hot_buffer is not None:
         # print("update hot_buffer")
-        # print(hot_buffer1)
-        bufferData.set_hot_key_tag_buffer(hot_buffer1)
+        # print(hot_buffer)
+        bufferData.set_hot_key_tag_buffer(hot_buffer)
+
+    # todo -- 这里添加读取数据库来配置埋点是否开启
+    # bufferData.set_data_collection_flag(flag='sss')
 
 
 def load_user_key_tag_task(bufferData):
