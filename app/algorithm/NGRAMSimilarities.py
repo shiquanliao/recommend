@@ -87,7 +87,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         rise_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['rise'])
         search_num.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['search_num'])
 
-    print(id_list)
+    print("id_list: {}".format(id_list))
     # print(hot_keywords)
     # print(hot_keywords_tags)
     # print(tag_list)
