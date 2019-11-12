@@ -49,6 +49,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     rise_list = []
     search_num = []
     id_list = []
+    sim_list = []
 
     # print(hot_key_tags_buffer)
     index_num = min(hot_tags_max_num, len(hot_key_tags_buffer))
@@ -63,8 +64,8 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         # print(i)
         # print(hot_key_tags_buffer[i]['keyword'])
         # print(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword'])
-        id_list.append(hot_key_tags_buffer[i]['id'])
-        id_list.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['id'])
+        id_list.append(str(hot_key_tags_buffer[i]['id']))
+        id_list.append(str(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['id']))
         hot_keywords.append(hot_key_tags_buffer[i]['keyword'])
         hot_keywords.append(hot_key_tags_buffer[len(hot_key_tags_buffer) - i - 1]['keyword'])
         hot_keywords_tags.append(hot_key_tags_buffer[i]['keyword_tags'])
@@ -80,7 +81,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         # print("----------------------------")
         # print(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword'])
         # print(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword_tags'])
-        id_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['id'])
+        id_list.append(str(hot_key_tags_buffer[math.ceil(index_num / 2)]['id']))
         hot_keywords.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword'])
         hot_keywords_tags.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['keyword_tags'])
         tag_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['tag'])
@@ -134,6 +135,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
             # print("---------------------")
             # distance.append(ngram_distance['sim'])
             distance.append(round(ngram_distance['sim'], 4))
+            sim_list.append(str(round(ngram_distance['sim'], 4)))
             order_number.append(j)
 
     # 取相似度前3，且相似度系数大于0.5
@@ -185,6 +187,6 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         user_tag = []
         similarity = []
         logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(id_list),
-                          ",".join(user_key_tags_buffer_1), ",".join(distance))
+                          ",".join(user_key_tags_buffer_1), ",".join(sim_list))
 
     return keywords
