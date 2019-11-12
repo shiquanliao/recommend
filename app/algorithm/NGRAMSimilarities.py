@@ -132,14 +132,15 @@ def find_user_similarity_keywords(user_key_tags_buffer,
             ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer_1), ngram_value)
             # print("ngram_distance: {}".format(ngram_distance))
             # print("---------------------")
-            distance.append(ngram_distance['sim'])
+            # distance.append(ngram_distance['sim'])
+            distance.append(round(ngram_distance['sim'], 4))
             order_number.append(j)
 
     # 取相似度前3，且相似度系数大于0.5
 
     d = {'col1': distance, 'col2': order_number}
     # print(d)
-    print("d : {}".format(d))
+    print("distance : {}".format(d))
     panadas_results = pd.DataFrame(data=d)
     panadas_results_sorted = panadas_results.sort_values(by='col1', ascending=False)
     # print(type(similarity_keywords_num))
