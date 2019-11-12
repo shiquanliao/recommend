@@ -29,7 +29,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   similarity_keywords_min,
                                   hot_tags_max_num=200,
                                   user_tag_max_num=30,
-                                  ngram_value = 1):
+                                  ngram_value=1):
     """
     :param user_key_tags_buffer:
     :param hot_key_tags_buffer:

@@ -5,6 +5,8 @@ from flask_apscheduler import APScheduler
 import os as os
 from app.dbs import BufferData
 from app.task import TimeTasks
+from app.utils import Logging
+import logging
 
 import atexit
 import fcntl
@@ -57,4 +59,5 @@ from app.views import main_views
 """
     这里添加我们的接口
 """
+logger = Logging.Logger('./log/all.log', logging.ERROR, logging.DEBUG)
 # app.run(debug=True)

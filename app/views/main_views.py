@@ -11,6 +11,7 @@ from app.setting import redis_perfix
 from app.utils import OtherUtil
 from app.algorithm import NGRAMSimilarities
 from app import bufferData
+from app import logger
 import time
 import traceback
 import json
@@ -93,6 +94,8 @@ def index():
             print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # print("algorithm elapsed_time is {}".format(time.time() - start_time))
         # return " test ---------------------------- "
+
+        logger.info("test")
 
         # 埋点没有返回的数据
         if result == -1:
