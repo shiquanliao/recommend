@@ -67,6 +67,7 @@ def Ngram_distance(str1, str2, n):
 if __name__ == "__main__":
     # 读取csv至字典
     file_abspath = os.path.abspath("iemi_hotword_tag.csv")
+    print("file_abspath is: {}".format(file_abspath))
 
     csvFile = open(file_abspath, "r")
     reader = csv.reader(csvFile)
