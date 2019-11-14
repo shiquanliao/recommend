@@ -48,9 +48,10 @@ class Logger:
     def cri(self, message):
         self.logger.critical(message)
 
-    def collection(self, imei, unique_id, tag_algorithm, recommend_algorithm, hot_word_index, user_tag, similarity):
+    def collection(self, imei, unique_id, tag_algorithm, recommend_algorithm, hot_word_index, user_tag, similarity,
+                   recommend_type):
         srt = imei + " | " + unique_id + " | " + tag_algorithm + " | " + recommend_algorithm + \
-              " | " + hot_word_index + " | " + user_tag + " | " + similarity
+              " | " + hot_word_index + " | " + user_tag + " | " + similarity + " | " + recommend_type
         self.logger.info(srt)
 
 # if __name__ == '__main__':

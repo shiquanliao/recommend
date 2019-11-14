@@ -182,11 +182,15 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     # elapsed = (time.clock() - start)
     # print("Time used:", elapsed)
     if data_collection_flag:
-        # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度
-        hot_word_index = []
-        user_tag = []
-        similarity = []
+
+
+        #  ----- 埋入算法数据
+        recommend_type = 1
         logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(id_list),
-                          ",".join(user_key_tags_buffer_1), ",".join(sim_list))
+                          ",".join(user_key_tags_buffer_1), ",".join(sim_list), recommend_type)
+
+        #  todo ---- 埋入CTR推荐
+        # recommend_type = 2
+        # logger.collection(xxx,xxx,xx,...)
 
     return keywords

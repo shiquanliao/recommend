@@ -81,8 +81,8 @@ def index():
 
         # print("read data from redis is {}".format(time.time() - start_time1))
 
-        # print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
-        # print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
+        print("hot_key_tags_buffer is {}".format(hot_key_tags_buffer))
+        print("user_key_tags_buffer is {}".format(user_key_tags_buffer))
         # print(type(hot_key_tags_buffer))
         # print(type(user_key_tags_buffer))
         start_time = time.time()
