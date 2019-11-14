@@ -79,7 +79,8 @@ if __name__ == "__main__":
         user_key_tags = redisBuffer.select_user_key_tag_no_mysql("al_" + item[0])
         # user_key_tags = ['中源', '公告', '立案', '来源', '披露', '因涉嫌', '信息', '董事长', '违规', '接到', '违法', '调查', '财经', '股评', '标题']
         ret = Ngram_distance(str(hot_word_tag), str(user_key_tags), 1)
-        print(ret)
+        all_info = {'hot_word_tag': hot_word_tag, 'user_key_tags': user_key_tags, 'Ngram_distance result': ret}
+        print(all_info)
         # print("itme[3] keyword_tags is: {}".format(item[3]))
 
     csvFile.close()
