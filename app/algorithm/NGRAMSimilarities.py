@@ -128,8 +128,8 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     for j in range(len(hot_keywords)):
         # if (hot_keywords_tags[j] is not None) & (user_key_tags_buffer_1 is not None):
         if (hot_keywords_tags[j] != "[]") & (len(user_key_tags_buffer_1) > 0):
-            # print("user_key_tags: {}".format(user_key_tags_buffer_1))
-            # print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
+            print("user_key_tags: {}".format(user_key_tags_buffer_1))
+            print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
             ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer_1), ngram_value)
             # print("ngram_distance: {}".format(ngram_distance))
             # print("---------------------")
@@ -182,8 +182,6 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     # elapsed = (time.clock() - start)
     # print("Time used:", elapsed)
     if data_collection_flag:
-
-
         #  ----- 埋入算法数据
         recommend_type = '1'
         logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(id_list),
