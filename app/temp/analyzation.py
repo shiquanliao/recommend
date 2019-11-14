@@ -1,5 +1,6 @@
 import csv
 import redis
+import os
 
 redis_config = {
     'RD_PSW': '993kf4wK9d',
@@ -65,7 +66,9 @@ def Ngram_distance(str1, str2, n):
 
 if __name__ == "__main__":
     # 读取csv至字典
-    csvFile = open("iemi_hotword_tag.csv", "r")
+    file_abspath = os.path.abspath("iemi_hotword_tag.csv")
+
+    csvFile = open(file_abspath, "r")
     reader = csv.reader(csvFile)
     redisBuffer = RedisMysqlCache()
 
