@@ -66,7 +66,7 @@ def Ngram_distance(str1, str2, n):
 
 if __name__ == "__main__":
     # 读取csv至字典
-    file_abspath = os.path.abspath("iemi_hotword_tag.csv")
+    file_abspath = os.path.abspath("imei_click.txt")
     print("file_abspath is: {}".format(file_abspath))
 
     csvFile = open(file_abspath, "r")
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     # 建立列表
     for item in reader:
         hot_word_tag = [x.strip('[').strip(']').strip("\"").strip(" ").strip("'") for x in item[2:]]
-        user_key_tags = redisBuffer.select_user_key_tag_no_mysql("al_" + item[0])
+        user_key_tags = redisBuffer.select_user_key_tag_no_mysql("click_" + item[0])
         # user_key_tags = ['中源', '公告', '立案', '来源', '披露', '因涉嫌', '信息', '董事长', '违规', '接到', '违法', '调查', '财经', '股评', '标题']
         ret = Ngram_distance(str(hot_word_tag), str(user_key_tags), 1)
         all_info = {'hot_word_tag': hot_word_tag, 'user_key_tags': user_key_tags, 'Ngram_distance result': ret}
