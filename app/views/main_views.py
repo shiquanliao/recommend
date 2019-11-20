@@ -55,7 +55,6 @@ def index():
         imei = input_param['imei']
         news_source = input_param['listNames'][0]['source']
         news_type = input_param['listNames'][0]['category']
-        ids = input_param['listNames'][0]['ids']
         similarity_keywords_num = input_param['similarityKeywordsNum']
         similarity_keywords_min = input_param['similarityKeywordsThreshold']
         if 'ids' in input_param['listNames'][0]:
