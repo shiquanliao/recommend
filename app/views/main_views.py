@@ -58,6 +58,10 @@ def index():
         ids = input_param['listNames'][0]['ids']
         similarity_keywords_num = input_param['similarityKeywordsNum']
         similarity_keywords_min = input_param['similarityKeywordsThreshold']
+        if 'ids' in input_param['listNames'][0]:
+            ids = input_param['listNames'][0]['ids']
+        else:
+            ids = None
         print('ids type is: {}'.format(type(ids)))
 
         start_time1 = time.time()
