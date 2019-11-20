@@ -196,6 +196,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         #  todo ---- 埋入CTR推荐
         if collect_ids is not None:
             recommend_type = '2'
+            print("collect_ids is: {}".format(collect_ids))
             logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(collect_ids),
                               ",".join(user_key_tags_buffer_1), ",".join(sim_list_other), recommend_type)
 
