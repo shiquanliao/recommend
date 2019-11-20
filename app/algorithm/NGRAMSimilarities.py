@@ -28,6 +28,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   news_source,
                                   similarity_keywords_num,
                                   similarity_keywords_min,
+                                  collect_ids,
                                   hot_tags_max_num=200,
                                   user_tag_max_num=30,
                                   ngram_value=1,
@@ -50,6 +51,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     search_num = []
     id_list = []
     sim_list = []
+    sim_list_other = []
 
     # print(hot_key_tags_buffer)
     index_num = min(hot_tags_max_num, len(hot_key_tags_buffer))
@@ -122,27 +124,30 @@ def find_user_similarity_keywords(user_key_tags_buffer,
 
     # user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())[:user_tag_max_num]
     user_key_tags_buffer_1 = list(user_key_tags_buffer.keys())
-    print("length of user_key_tags_buffer_1: {}".format(user_key_tags_buffer_1))
+    # print("length of user_key_tags_buffer_1: {}".format(user_key_tags_buffer_1))
     # print("length of user_key_tags_buffer_1:", len(user_key_tags_buffer_1))
     # print("user_key_tags_buffer = ",user_key_tags_buffer)
     for j in range(len(hot_keywords)):
         # if (hot_keywords_tags[j] is not None) & (user_key_tags_buffer_1 is not None):
         if (hot_keywords_tags[j] != "[]") & (len(user_key_tags_buffer_1) > 0):
-            print("user_key_tags: {}".format(user_key_tags_buffer_1))
-            print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
+            # print("user_key_tags: {}".format(user_key_tags_buffer_1))
+            # print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
             ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer_1), ngram_value)
             # print("ngram_distance: {}".format(ngram_distance))
             # print("---------------------")
             # distance.append(ngram_distance['sim'])
             distance.append(round(ngram_distance['sim'], 4))
             sim_list.append(str(round(ngram_distance['sim'], 4)))
+            if collect_ids is not None:
+                if id_list[j] in collect_ids:
+                    sim_list_other.append(str(round(ngram_distance['sim'], 4)))
             order_number.append(j)
 
     # 取相似度前3，且相似度系数大于0.5
 
     d = {'col1': distance, 'col2': order_number}
     # print(d)
-    print("distance : {}".format(distance))
+    # print("distance : {}".format(distance))
     panadas_results = pd.DataFrame(data=d)
     panadas_results_sorted = panadas_results.sort_values(by='col1', ascending=False)
     # print(type(similarity_keywords_num))
@@ -182,13 +187,16 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     # elapsed = (time.clock() - start)
     # print("Time used:", elapsed)
     if data_collection_flag:
+        # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度 | 数据类型（1：算法推荐, 2：ctr+original）
         #  ----- 埋入算法数据
         recommend_type = '1'
         logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(id_list),
                           ",".join(user_key_tags_buffer_1), ",".join(sim_list), recommend_type)
 
         #  todo ---- 埋入CTR推荐
-        # recommend_type = '2'
-        # logger.collection(xxx,xxx,xx,...)
+        if collect_ids is not None:
+            recommend_type = '2'
+            logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(collect_ids),
+                              ",".join(user_key_tags_buffer_1), ",".join(sim_list_other), recommend_type)
 
     return keywords

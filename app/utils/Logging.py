@@ -50,6 +50,7 @@ class Logger:
 
     def collection(self, imei, unique_id, tag_algorithm, recommend_algorithm, hot_word_index, user_tag, similarity,
                    recommend_type):
+        # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度 | 数据类型（1：算法推荐, 2：ctr+original）
         srt = imei + " | " + unique_id + " | " + tag_algorithm + " | " + recommend_algorithm + \
               " | " + hot_word_index + " | " + user_tag + " | " + similarity + " | " + recommend_type
         self.logger.info(srt)
@@ -60,7 +61,7 @@ class Logger:
 # while True:
 #     index = index + 1
 #     imei = "----" + str(index) + "-----"
-#     # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度
+#
 #     data_str = imei + " | " + "---唯一id---" + " | " + "----标签算法----" + " | " + "---推荐算法----" + \
 #                " | " + "----热词列表索引 ------" + " | " + "-----用户标签-----" + " | " + "-----相似度----"
 #     logyyx.collection(imei, "--唯一id--", "--标签算法--", "--推荐算法--", "--热词列表索引--", "--用户标签--", "--相似度--")
