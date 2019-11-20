@@ -196,9 +196,10 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                           ",".join(user_key_tags_buffer_1), ",".join(sim_list), recommend_type)
 
         #  todo ---- 埋入CTR推荐
+        print("ids_other is: {}".format(ids_other))
         if ids_other:
             recommend_type = '2'
-            print("collect_ids is: {}".format(collect_ids))
+            print("ids_other is: {}".format(ids_other))
             logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(collect_ids),
                               ",".join(user_key_tags_buffer_1), ",".join(sim_list_other), recommend_type)
 
