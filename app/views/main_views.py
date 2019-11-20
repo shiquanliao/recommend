@@ -55,8 +55,10 @@ def index():
         imei = input_param['imei']
         news_source = input_param['listNames'][0]['source']
         news_type = input_param['listNames'][0]['category']
+        ids = input_param['listNames'][0]['ids']
         similarity_keywords_num = input_param['similarityKeywordsNum']
         similarity_keywords_min = input_param['similarityKeywordsThreshold']
+        print('ids type is: {}'.format(type(ids)))
 
         start_time1 = time.time()
         # hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
