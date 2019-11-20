@@ -52,6 +52,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
     id_list = []
     sim_list = []
     sim_list_other = []
+    ids_other = []
 
     # print(hot_key_tags_buffer)
     index_num = min(hot_tags_max_num, len(hot_key_tags_buffer))
@@ -140,6 +141,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
             sim_list.append(str(round(ngram_distance['sim'], 4)))
             if collect_ids is not None:
                 if id_list[j] in collect_ids:
+                    ids_other.append(str(id_list[j]))
                     sim_list_other.append(str(round(ngram_distance['sim'], 4)))
             order_number.append(j)
 
@@ -194,7 +196,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                           ",".join(user_key_tags_buffer_1), ",".join(sim_list), recommend_type)
 
         #  todo ---- 埋入CTR推荐
-        if collect_ids is not None:
+        if ids_other:
             recommend_type = '2'
             print("collect_ids is: {}".format(collect_ids))
             logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(collect_ids),
