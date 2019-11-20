@@ -135,12 +135,11 @@ def find_user_similarity_keywords(user_key_tags_buffer,
             # print("hot_keywords_tags: {}".format(hot_keywords_tags[j]))
             ngram_distance = Ngram_distance(hot_keywords_tags[j], str(user_key_tags_buffer_1), ngram_value)
             # print("ngram_distance: {}".format(ngram_distance))
-            # print("---------------------")
             # distance.append(ngram_distance['sim'])
             distance.append(round(ngram_distance['sim'], 4))
             sim_list.append(str(round(ngram_distance['sim'], 4)))
             if collect_ids is not None:
-                if id_list[j] in collect_ids:
+                if int(id_list[j]) in collect_ids:
                     ids_other.append(str(id_list[j]))
                     sim_list_other.append(str(round(ngram_distance['sim'], 4)))
             order_number.append(j)
