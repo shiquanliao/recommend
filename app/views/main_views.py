@@ -83,8 +83,8 @@ def index():
         # print("read data from user_key_tags_buffer is {}".format(time.time() - start_time2))
 
         if (not hot_key_tags_buffer) or (not user_key_tags_buffer):
-            print("main_views : {}".format(hot_key_tags_buffer))
-            print("main_views : {}".format(user_key_tags_buffer))
+            # print("main_views : {}".format(hot_key_tags_buffer))
+            # print("main_views : {}".format(user_key_tags_buffer))
             return response_wrap.error(2001)
 
         # print("read data from redis is {}".format(time.time() - start_time1))
