@@ -62,7 +62,7 @@ def index():
         else:
             ids = None
         # print('ids type is: {}'.format(type(ids)))
-        if 'redId' in input_param:
+        if 'reqId' in input_param:
             reqId = input_param['reqId']
         else:
             reqId = None
