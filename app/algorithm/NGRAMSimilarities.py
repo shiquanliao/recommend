@@ -92,7 +92,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         rise_list.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['rise'])
         search_num.append(hot_key_tags_buffer[math.ceil(index_num / 2)]['search_num'])
 
-    print("id_list: {}".format(id_list))
+    # print("id_list: {}".format(id_list))
     # print(hot_keywords)
     # print(hot_keywords_tags)
     # print(tag_list)
@@ -200,8 +200,8 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         #  todo ---- 埋入CTR推荐
         if ids_other:
             recommend_type = '2'
-            print("ids_other is: {}".format(ids_other))
-            print("sim_list_other is: {}".format(sim_list_other))
+            # print("ids_other is: {}".format(ids_other))
+            # print("sim_list_other is: {}".format(sim_list_other))
             logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(ids_other),
                               ",".join(user_key_tags_buffer_1), ",".join(sim_list_other), recommend_type)
 
