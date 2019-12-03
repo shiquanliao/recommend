@@ -53,7 +53,6 @@ def index():
 
         # start_time = time.time()
         imei = input_param['imei']
-        reqId = input_param['reqId']
         news_source = input_param['listNames'][0]['source']
         news_type = input_param['listNames'][0]['category']
         similarity_keywords_num = input_param['similarityKeywordsNum']
@@ -63,7 +62,10 @@ def index():
         else:
             ids = None
         # print('ids type is: {}'.format(type(ids)))
-
+        if 'redId' in input_param:
+            reqId = input_param['reqId']
+        else:
+            reqId = None
         start_time1 = time.time()
         # hot_key_tags_buffer = main_dbs.get_hot_key_tag_from_redis(news_source, news_type)
         # hot_key_tags_buffer = bufferData.get_hot_key_tag_buffer(
