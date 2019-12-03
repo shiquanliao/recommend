@@ -16,7 +16,7 @@ class Logger:
         # Use an absolute path to prevent file rotation trouble.
         logfile = os.path.abspath(path)
         # Rotate log after reaching 512K, keep 5 old copies.
-        rh = ConcurrentRotatingFileHandler(logfile, "a", 5120 * 1024, backCount)
+        rh = ConcurrentRotatingFileHandler(logfile, "a", 10 * 1024 * 1024 * 1024, backCount)
         # th = handlers.TimedRotatingFileHandler(filename=logfile, when=when, backupCount=backCount, encoding='utf-8')
         rh.setFormatter(fmt)
 
