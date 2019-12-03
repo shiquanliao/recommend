@@ -38,8 +38,8 @@ class TFSimilarities(object):
         # 初始化一个tfidf模型,可以用它来转换向量（词袋整数计数）表示方法为新的表示方法（Tfidf 实数权重）
         tfidf = models.TfidfModel(corpus)
         # 测试
-        # test_doc_bow = [(0, 1), (1, 1)]
-        # print(tfidf[test_doc_bow])
+        test_doc_bow = [(0, 1), (1, 1)]
+        print(tfidf[test_doc_bow])
         # [(0, 0.7071067811865476), (1, 0.7071067811865476)]
 
         # 将整个语料库转为tfidf表示方法

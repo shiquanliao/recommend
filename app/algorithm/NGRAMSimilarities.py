@@ -29,6 +29,7 @@ def find_user_similarity_keywords(user_key_tags_buffer,
                                   similarity_keywords_num,
                                   similarity_keywords_min,
                                   collect_ids,
+                                  reqId,
                                   hot_tags_max_num=200,
                                   user_tag_max_num=30,
                                   ngram_value=1,
@@ -191,7 +192,9 @@ def find_user_similarity_keywords(user_key_tags_buffer,
         # 时间 | imei | 唯一id | 标签算法 | 推荐算法 | 热词列表索引 | 用户标签 | 相似度 | 数据类型（1：算法推荐, 2：ctr+original）
         #  ----- 埋入算法数据
         recommend_type = '1'
-        logger.collection(imei, "唯一id", "--标签算法--", "--推荐算法--", ",".join(id_list),
+        if reqId is None:
+            reqId = "-"
+        logger.collection(imei, reqId, "--标签算法--", "--推荐算法--", ",".join(id_list),
                           ",".join(user_key_tags_buffer_1), ",".join(sim_list), recommend_type)
 
         #  todo ---- 埋入CTR推荐
